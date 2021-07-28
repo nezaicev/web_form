@@ -8,7 +8,6 @@ import utils
 
 FIXTURE_PATH='fixture.json'
 app = Flask(__name__)
-# app.config["MONGO_URI"]='mongodb://127.0.0.1:27017/forms'
 app.config["MONGO_URI"] = 'mongodb://{}:{}/{}'.format(
     os.environ['MONGO_DB_ADDR'],
     os.environ['MONGO_DB_PORT'],
@@ -23,7 +22,7 @@ def test():
     return jsonify(message="success")
 
 
-@app.route('/load_dump', methods=['POST'])
+@app.route('/load_dump')
 def test_dump():
     if os.path.exists(FIXTURE_PATH):
         if not list(db.forms.find()):
