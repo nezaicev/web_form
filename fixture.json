@@ -8,8 +8,8 @@
   },
   {
     "name": "Lomond",
-    "capitan": "text",
-    "navigator": "text",
+    "boss_name": "text",
+    "friend_name": "text",
     "arrival_date": "date",
     "phone_number": "phone",
     "description": "text"
@@ -17,23 +17,23 @@
   {"name": "Viking",
     "capitan": "text",
     "navigator": "text",
-    "arrival_date": "date",
-    "phone_number": "phone",
-    "description": "text",
-    "navigator's_email_": "email"
+    "main_date": "date",
+    "mobile_number": "phone",
+    "format": "text",
+    "navigator_email": "email"
   },
   {"name": "Sea Tiger",
     "manager": "text",
     "age": "text",
     "birth_date": "date",
-    "phone_number": "phone",
-    "description": "text"
+    "teacher_number": "phone",
+    "level": "text"
   },
   {
     "name": "HMS Torrin",
-    "capitan": "text",
-    "navigator": "text",
-    "arrival_date": "date"
+    "camera": "text",
+    "module_name": "text",
+    "set_date": "date"
 
   }
 ]

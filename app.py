@@ -1,11 +1,14 @@
 import os
+import json
 from flask import request
 from flask import Flask, jsonify
 from flask_pymongo import PyMongo
 
 import utils
 
+FIXTURE_PATH='fixture.json'
 app = Flask(__name__)
+# app.config["MONGO_URI"]='mongodb://127.0.0.1:27017/forms'
 app.config["MONGO_URI"] = 'mongodb://{}:{}/{}'.format(
     os.environ['MONGO_DB_ADDR'],
     os.environ['MONGO_DB_PORT'],
@@ -20,6 +23,21 @@ def test():
     return jsonify(message="success")
 
 
+@app.route('/load_dump', methods=['POST'])
+def test_dump():
+    if os.path.exists(FIXTURE_PATH):
+        if not list(db.forms.find()):
+            with open(FIXTURE_PATH, 'r', encoding='utf-8') as f:
+                data_fixtures = json.load(f)
+            for row in data_fixtures:
+                db.forms.insert_one(row, {'unique': True})
+            return jsonify({'message':'ok'})
+        else:
+            return jsonify({'message': 'DB not empty'})
+    else:
+        jsonify({'message':'File  not find'.format(FIXTURE_PATH)})
+
+
 @app.route('/get_form', methods=['POST'])
 def get_form():
     tmp_form = {}
@@ -27,16 +45,11 @@ def get_form():
     for key, value in fields.items():
         tmp_form[key] = utils.validate_field(value)
     results = list(db.forms.find(tmp_form, {'_id': 0, 'name': 1}))
-    # results = db.forms.findOne(tmp_form, {'_id': 0, 'name': 1})
-    print(results)
-    print(list(results))
     if results:
         return jsonify(results)
     else:
         return jsonify(tmp_form)
 
 
-# @app.route("/add_one", methods=['POST'])
-# def add_one():
-#     db.forms.insert_one(dict(request.args))
-#     return jsonify(message="success")
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8080, debug=True)
