@@ -1,0 +1,39 @@
+[
+  {
+    "name": "Sirdar",
+    "main_email": "email",
+    "main_phone": "phone",
+    "create_date": "date",
+    "count": "text"
+  },
+  {
+    "name": "Lomond",
+    "capitan": "text",
+    "navigator": "text",
+    "arrival_date": "date",
+    "phone_number": "phone",
+    "description": "text"
+  },
+  {"name": "Viking",
+    "capitan": "text",
+    "navigator": "text",
+    "arrival_date": "date",
+    "phone_number": "phone",
+    "description": "text",
+    "navigator's_email_": "email"
+  },
+  {"name": "Sea Tiger",
+    "manager": "text",
+    "age": "text",
+    "birth_date": "date",
+    "phone_number": "phone",
+    "description": "text"
+  },
+  {
+    "name": "HMS Torrin",
+    "capitan": "text",
+    "navigator": "text",
+    "arrival_date": "date"
+
+  }
+]
